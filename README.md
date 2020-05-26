@@ -3,6 +3,20 @@
 ![64443730_2461085627264073_2093662059899125760_n](https://user-images.githubusercontent.com/9820600/82946861-7a4bcf00-9f75-11ea-8fd3-611a40669043.png)
 
 
+## Instalando a aplicação
+
+Primeiro, Clone o repositório.
+
+Depois, navegue até a pasta raíz do projeto e instale as dependências através do Yarn:
+
+	  yarn
+
+Logo após, inicie o servidor através do comando:
+
+    yarn dev:server
+
+Pronto!
+
 **Rota Usuário**
 ----
 
@@ -240,18 +254,3 @@ Exemplo de response do comentários da candidatura:
     }
   }
 ```
-
-## Instalando a aplicação
-
-Primeiro, Clone o repositório.
-
-Depois, navegue até a pasta raíz do projeto e instale as dependências através do Yarn:
-
-	  yarn
-
-Logo após, inicie o servidor através do comando:
-
-    yarn dev:server
-
-Pronto!
-
