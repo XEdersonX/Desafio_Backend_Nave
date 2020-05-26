@@ -1,8 +1,6 @@
 import { Router } from 'express';
-import { getRepository } from 'typeorm';
 
-import CommentsApplications from '../models/CommentsApplication';
-
+import ListCommentsApplicationsService from '../services/commentsApplications/ListCommentsApplicationsService';
 import CreateCommentsApplicationsService from '../services/commentsApplications/CreateCommentsApplicationsService';
 import UpdateCommentsApplicationsService from '../services/commentsApplications/UpdateCommentsApplicationsService';
 import DeleteCommentsApplicationsService from '../services/commentsApplications/DeleteCommentsApplicationsService';
@@ -14,10 +12,14 @@ const commentsApplicationsRouter = Router();
 // Middeware
 commentsApplicationsRouter.use(ensureAuthenticated);
 
-commentsApplicationsRouter.get('/', async (request, response) => {
-  const commentsApplicationsRepository = getRepository(CommentsApplications);
+commentsApplicationsRouter.get('/:id', async (request, response) => {
+  const { id } = request.params;
 
-  const commentApplication = await commentsApplicationsRepository.find();
+  const listCommentsApplications = new ListCommentsApplicationsService();
+
+  const commentApplication = await listCommentsApplications.execute({
+    id_application: id,
+  });
 
   return response.json(commentApplication);
 });
