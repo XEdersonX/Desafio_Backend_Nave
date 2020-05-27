@@ -12,10 +12,12 @@ describe('Candidate', () => {
   beforeAll(async () => {
     connection = await createConnection('test-connection');
     await connection.runMigrations();
+
+    await connection.query('DELETE FROM candidate');
   });
 
   beforeEach(async () => {
-    await connection.query('DELETE FROM candidate');
+    // await connection.query('DELETE FROM candidate');
   });
 
   afterAll(async () => {

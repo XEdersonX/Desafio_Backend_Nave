@@ -10,7 +10,7 @@ export default class CreateCommentsApplications1590283389964
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'commentsApplication',
+        name: 'comments_application',
         columns: [
           {
             name: 'id',
@@ -48,7 +48,7 @@ export default class CreateCommentsApplications1590283389964
     );
 
     await queryRunner.createForeignKey(
-      'commentsApplication',
+      'comments_application',
       new TableForeignKey({
         name: 'CommentsIdApplication',
         columnNames: ['id_application'],
@@ -60,7 +60,7 @@ export default class CreateCommentsApplications1590283389964
     );
 
     await queryRunner.createForeignKey(
-      'commentsApplication',
+      'comments_application',
       new TableForeignKey({
         name: 'CommentsUser',
         columnNames: ['id_user'],
@@ -73,6 +73,6 @@ export default class CreateCommentsApplications1590283389964
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('commentsApplication');
+    await queryRunner.dropTable('comments_application');
   }
 }

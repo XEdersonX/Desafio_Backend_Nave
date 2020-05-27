@@ -14,6 +14,11 @@ describe('Application', () => {
   beforeAll(async () => {
     connection = await createConnection('test-connection');
     await connection.runMigrations();
+
+    await connection.query('DELETE FROM applications');
+    await connection.query('DELETE FROM candidate');
+    await connection.query('DELETE FROM vacancies');
+    await connection.query('DELETE FROM users');
   });
 
   beforeEach(async () => {
@@ -40,7 +45,7 @@ describe('Application', () => {
     // await connection.query('DELETE FROM applications');
     // await connection.query('DELETE FROM candidate');
     // await connection.query('DELETE FROM vacancies');
-    await connection.query('DELETE FROM users');
+    // await connection.query('DELETE FROM users');
 
     // await connection.query('DELETE FROM applications');
     // await connection.query('DELETE FROM users');

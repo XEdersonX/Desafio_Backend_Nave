@@ -16,11 +16,12 @@ describe('CommentsApplication', () => {
   beforeAll(async () => {
     connection = await createConnection('test-connection');
     await connection.runMigrations();
-  });
 
-  beforeEach(async () => {
-    // await connection.query('DELETE FROM users');
-    // await connection.query('DELETE FROM applications');
+    await connection.query('DELETE FROM users');
+    await connection.query('DELETE FROM vacancies');
+    await connection.query('DELETE FROM candidate');
+    await connection.query('DELETE FROM comments_application');
+    await connection.query('DELETE FROM applications');
 
     // Criar Usuario
     await request(app).post('/users').send({
@@ -35,7 +36,7 @@ describe('CommentsApplication', () => {
     });
 
     rootJwtToken = `Bearer ${response.body.token}`;
-    idUser = response.body.id;
+    idUser = response.body.user.id;
 
     // Criar Candidato
     const candidate = await request(app).post('/candidate').send({
@@ -61,13 +62,11 @@ describe('CommentsApplication', () => {
     });
 
     idApplication = application.body.id;
-    // console.log(`🚀 ${idApplication}`);
   });
 
-  afterAll(async () => {
-    await connection.query('DELETE FROM users');
-    await connection.query('DELETE FROM applications');
+  // beforeEach(async () => {});
 
+  afterAll(async () => {
     const mainConnection = getConnection();
 
     await connection.close();
@@ -76,7 +75,7 @@ describe('CommentsApplication', () => {
 
   it('should be able to list comments', async () => {
     await request(app)
-      .post('/commentsApplication')
+      .post('/commentsApplications')
       .set('Authorization', rootJwtToken)
       .send({
         id_application: idApplication,
@@ -85,7 +84,7 @@ describe('CommentsApplication', () => {
       });
 
     await request(app)
-      .post('/commentsApplication')
+      .post('/commentsApplications')
       .set('Authorization', rootJwtToken)
       .send({
         id_application: idApplication,
@@ -94,7 +93,7 @@ describe('CommentsApplication', () => {
       });
 
     await request(app)
-      .post('/commentsApplication')
+      .post('/commentsApplications')
       .set('Authorization', rootJwtToken)
       .send({
         id_application: idApplication,
@@ -102,9 +101,9 @@ describe('CommentsApplication', () => {
         id_user: idUser,
       });
 
-    const response = await request(app).get(
-      `/commentsApplications/${idApplication}`,
-    );
+    const response = await request(app)
+      .get(`/commentsApplications/${idApplication}`)
+      .set('Authorization', rootJwtToken);
 
     expect(response.body).toHaveLength(3);
   });
@@ -113,7 +112,7 @@ describe('CommentsApplication', () => {
     const commentsRepository = getRepository(CommentsApplication);
 
     const response = await request(app)
-      .post('/commentsApplication')
+      .post('/commentsApplications')
       .set('Authorization', rootJwtToken)
       .send({
         id_application: idApplication,
@@ -134,7 +133,7 @@ describe('CommentsApplication', () => {
 
   it('should be able to update comment', async () => {
     const comment = await request(app)
-      .post('/commentsApplication')
+      .post('/commentsApplications')
       .set('Authorization', rootJwtToken)
       .send({
         id_application: idApplication,
@@ -143,7 +142,7 @@ describe('CommentsApplication', () => {
       });
 
     const response = await request(app)
-      .put(`/commentsApplication/${comment.body.id}`)
+      .put(`/commentsApplications/${comment.body.id}`)
       .set('Authorization', rootJwtToken)
       .send({
         id_application: idApplication,
@@ -160,7 +159,7 @@ describe('CommentsApplication', () => {
     const commentsRepository = getRepository(CommentsApplication);
 
     const response = await request(app)
-      .post('/commentsApplication')
+      .post('/commentsApplications')
       .set('Authorization', rootJwtToken)
       .send({
         id_application: idApplication,
@@ -169,7 +168,7 @@ describe('CommentsApplication', () => {
       });
 
     await request(app)
-      .delete(`/commentsApplication/${response.body.id}`)
+      .delete(`/commentsApplications/${response.body.id}`)
       .set('Authorization', rootJwtToken);
 
     const comment = await commentsRepository.findOne(response.body.id);

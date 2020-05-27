@@ -11,7 +11,7 @@ import {
 import Application from './Application';
 import User from './User';
 
-@Entity('commentsApplication')
+@Entity('comments_application')
 class CommentsApplication {
   @PrimaryGeneratedColumn('uuid')
   id: string;
