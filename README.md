@@ -2,6 +2,11 @@
 
 ![64443730_2461085627264073_2093662059899125760_n](https://user-images.githubusercontent.com/9820600/82946861-7a4bcf00-9f75-11ea-8fd3-611a40669043.png)
 
+## Banco Dados Utilizado
+* Postgresql
+
+* Nome Database: jobs_vacancies
+* Nome Database teste: jobs_vacancies_tests
 
 ## Instalando a aplicação
 
@@ -11,9 +16,17 @@ Depois, navegue até a pasta raíz do projeto e instale as dependências atravé
 
 	  yarn
 
+Logo após, criar as tabelas no banco de dados através do comando:
+
+    yarn typeorm migration:run
+
 Logo após, inicie o servidor através do comando:
 
     yarn dev:server
+
+Se quiser executar os testes através do comando:
+
+    yarn test
 
 Pronto!
 

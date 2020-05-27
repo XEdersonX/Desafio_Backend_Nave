@@ -7,8 +7,9 @@ import 'express-async-errors';
 import routes from './routes';
 import AppError from './errors/AppError';
 
-import './database';
+import createConnection from './database';
 
+createConnection();
 const app = express();
 
 app.use(cors());
