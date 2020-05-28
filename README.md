@@ -181,6 +181,17 @@ Exemplo de request de candidatura:
 Exemplo de response de candidatura:
 ```
   {
+    "id_candidate": "9b2e987c-8625-4e63-8e4b-0ece7bc61afb",
+    "id_vacancies": "90152a56-fd95-49fe-a0d9-1486889fd1ee",
+    "id": "ce676192-c896-4f83-801a-5289a8718a49",
+    "created_at": "2020-05-26T22:10:48.699Z",
+    "updated_at": "2020-05-26T22:10:48.699Z"
+  }
+```
+
+Exemplo de response da listagem de candidatura:
+```
+  {
     "id": "ce676192-c896-4f83-801a-5289a8718a49",
     "id_candidate": "9b2e987c-8625-4e63-8e4b-0ece7bc61afb",
     "id_vacancies": "90152a56-fd95-49fe-a0d9-1486889fd1ee",
@@ -227,6 +238,18 @@ Exemplo de request do comentários da candidatura:
 ```
 
 Exemplo de response do comentários da candidatura:
+```
+  {
+    "id_application": "ce676192-c896-4f83-801a-5289a8718a49",
+    "description": "Aprovado no teste",
+    "id_user": "548db5f6-8e39-419f-a780-5dcf18089445",
+    "id": "69ab6b54-f1e5-4758-9e02-20c83bbd290a",
+    "created_at": "2020-05-26T22:36:20.690Z",
+    "updated_at": "2020-05-26T22:36:20.690Z"
+  }
+```
+
+Exemplo de response da listagem de comentários da candidatura:
 ```
   {
     "id": "69ab6b54-f1e5-4758-9e02-20c83bbd290a",
