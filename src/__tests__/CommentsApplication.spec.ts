@@ -17,11 +17,11 @@ describe('CommentsApplication', () => {
     connection = await createConnection('test-connection');
     await connection.runMigrations();
 
+    await connection.query('DELETE FROM comments_application');
+    await connection.query('DELETE FROM applications');
     await connection.query('DELETE FROM users');
     await connection.query('DELETE FROM vacancies');
     await connection.query('DELETE FROM candidate');
-    await connection.query('DELETE FROM comments_application');
-    await connection.query('DELETE FROM applications');
 
     // Criar Usuario
     await request(app).post('/users').send({
@@ -63,8 +63,6 @@ describe('CommentsApplication', () => {
 
     idApplication = application.body.id;
   });
-
-  // beforeEach(async () => {});
 
   afterAll(async () => {
     const mainConnection = getConnection();

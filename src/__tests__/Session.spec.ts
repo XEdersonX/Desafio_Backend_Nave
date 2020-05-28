@@ -14,10 +14,6 @@ describe('Session', () => {
     await connection.query('DELETE FROM users');
   });
 
-  beforeEach(async () => {
-    // await connection.query('DELETE FROM users');
-  });
-
   afterAll(async () => {
     const mainConnection = getConnection();
 

@@ -16,10 +16,6 @@ describe('Candidate', () => {
     await connection.query('DELETE FROM candidate');
   });
 
-  beforeEach(async () => {
-    // await connection.query('DELETE FROM candidate');
-  });
-
   afterAll(async () => {
     const mainConnection = getConnection();
 

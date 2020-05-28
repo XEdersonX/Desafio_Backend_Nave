@@ -22,11 +22,6 @@ describe('Application', () => {
   });
 
   beforeEach(async () => {
-    // await connection.query('DELETE FROM applications');
-    // await connection.query('DELETE FROM candidate');
-    // await connection.query('DELETE FROM vacancies');
-    // await connection.query('DELETE FROM users');
-
     await request(app).post('/users').send({
       name: 'Teste 11 Token',
       email: 'testetoken11@gmail.com',
@@ -42,13 +37,6 @@ describe('Application', () => {
   });
 
   afterAll(async () => {
-    // await connection.query('DELETE FROM applications');
-    // await connection.query('DELETE FROM candidate');
-    // await connection.query('DELETE FROM vacancies');
-    // await connection.query('DELETE FROM users');
-
-    // await connection.query('DELETE FROM applications');
-    // await connection.query('DELETE FROM users');
     const mainConnection = getConnection();
 
     await connection.close();
